@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Car Guide</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--tx:#17202a;--mut:#5d6874;--ac:#0b5fd1;--bd:#dce1e7;--bad:#b3261e;--good:#0b7a4f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--card:#171d24;--tx:#e8eaed;--mut:#9aa5b1;--ac:#6aa6ff;--bd:#28313b;--bad:#f2867f;--good:#4cc79a}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+.top{background:var(--card);border-bottom:1px solid var(--bd)}.top .wrap{display:flex;justify-content:space-between;align-items:center;height:58px}
+.logo{font-weight:800;font-size:1.25rem;color:var(--ac);cursor:pointer}
+.lang{display:flex;border:1px solid var(--bd);border-radius:8px;overflow:hidden}.lang button{border:0;background:var(--card);color:var(--tx);padding:7px 13px;cursor:pointer;font:inherit}.lang button.on{background:var(--ac);color:#fff}
+.hero{padding:28px 0 12px}.hero h1{margin:0 0 6px;font-size:1.6rem}.hero p{margin:0 0 14px;color:var(--mut)}
+input{width:100%;font:inherit;padding:13px 14px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:14px 0}
+.chip{background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:10px;padding:12px;font:inherit;cursor:pointer;text-align:start}.chip:hover{border-color:var(--ac)}.chip small{display:block;color:var(--good)}
+.back{background:none;border:0;color:var(--ac);cursor:pointer;font:inherit;padding:8px 0}
+.detail{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:20px;margin:12px 0}@media(max-width:700px){.detail{grid-template-columns:1fr}}
+.detail img{width:100%;border-radius:12px;border:1px solid var(--bd);background:var(--card)}.ph{aspect-ratio:4/3;display:grid;place-items:center;border:1px dashed var(--bd);border-radius:12px;color:var(--mut)}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;margin-bottom:12px}.box h3{margin:0 0 8px;font-size:1rem}
+table{width:100%;border-collapse:collapse}td{padding:6px 0;border-top:1px solid var(--bd)}td:last-child{text-align:end;font-weight:600}
+.pr{display:grid;grid-template-columns:1fr 1fr;gap:8px}.pr div{background:var(--bg);border-radius:8px;padding:8px 10px;font-size:.9rem}.pr b{display:block;color:var(--ac)}
+.p{border-top:1px solid var(--bd);padding:8px 0}.p .t{color:var(--bad);font-weight:600}.p .s{color:var(--good)}.p .t::before{content:"⚠ "}.p .s::before{content:"✔ "}
+.bar{display:flex;gap:8px;margin-top:8px}.bar select{flex:1;font:inherit;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx)}.th{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;margin-bottom:6px;background:var(--bg)}.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}.gal img{aspect-ratio:4/3;object-fit:cover;border-radius:8px}.rc{border-top:1px solid var(--bd);padding:8px 0;font-size:.92rem}.rc b{color:var(--bad)}.rc i{display:block;color:var(--good);font-style:normal}.ad{margin:14px auto;text-align:center;min-height:90px}.mut{color:var(--mut)}footer{padding:20px 0 30px;color:var(--mut);font-size:.85rem}
+</style>
+<!-- GOOGLE ADSENSE: after approval, uncomment and put your publisher ID
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+</head><body>
+<div class="top"><div class="wrap"><div class="logo" id="logo">Car Guide</div><div class="lang"><button id="bEn">English</button><button id="bAr">العربية</button></div></div></div>
+<div class="wrap">
+<div class="hero"><h1 id="h1"></h1><p id="sub"></p><input id="q" type="search"><div class="bar"><select id="ty"></select><select id="yr"></select></div></div>
+<div class="ad"><!-- ADSENSE SLOT 1 --></div>
+<div id="view"></div>
+<div class="ad"><!-- ADSENSE SLOT 2 --></div>
+<footer id="foot"></footer>
+</div>
+<script>
+var CARS=[
+{b:"Dacia",m:"Logan / Sandero 1.5 dCi",y:"2013–2020",p:[
+ [["Clogged injectors / EGR valve: power loss, black smoke","انسداد البخاخات أو صمام EGR: ضعف في القوة ودخان أسود"],["Clean or replace injectors and EGR valve, use good diesel","تنظيف أو تغيير البخاخات وصمام EGR واستعمال مازوط جيد"]],
+ [["Clutch wears early and pedal feels hard","الدبرياج يتلف بسرعة والدواسة تصبح ثقيلة"],["Replace the clutch kit and avoid resting the foot on the pedal","تغيير طقم الدبرياج وتجنب وضع الرجل على الدواسة"]]]},
+{b:"Renault",m:"Clio 4 1.5 dCi",y:"2013–2019",p:[
+ [["Power steering warning light, heavy steering","ضوء عطل التوجيه والمقود يصبح ثقيلا"],["Check battery and wiring first, then the electric steering motor","فحص البطارية والأسلاك أولا ثم محرك التوجيه الكهربائي"]],
+ [["Rattling noise from the front suspension","صوت طقطقة من التعليق الأمامي"],["Replace worn stabilizer links and bushings","تغيير وصلات المثبت والبوشات المتآكلة"]]]},
+{b:"Peugeot",m:"208 / 308 1.2 PureTech",y:"2014–2022",p:[
+ [["Wet timing belt degrades and can clog the oil system","حزام التوقيت المبلل يتآكل وقد يسد نظام الزيت"],["Replace the belt on schedule (about every 6 years or 100,000 km) and use the exact oil specified","تغيير الحزام في وقته (حوالي كل 6 سنوات أو 100,000 كلم) واستعمال الزيت المحدد بدقة"]],
+ [["Higher than normal oil consumption","استهلاك زيت أكثر من المعتاد"],["Check the level every month and see a specialist if it keeps dropping","مراقبة المستوى كل شهر واستشارة مختص إذا استمر في النقصان"]]]},
+{b:"Volkswagen",m:"Golf 7 1.6 TDI / DSG",y:"2013–2020",p:[
+ [["DSG gearbox judders at low speed","علبة DSG ترتعش عند السرعة المنخفضة"],["Change the gearbox oil and filter on time and update software; clutch pack or mechatronic may need repair","تغيير زيت العلبة والفلتر في وقتهما وتحديث البرنامج وقد يلزم إصلاح الدبرياج أو الميكاترونيك"]],
+ [["Clogged particulate filter (DPF) from short trips","انسداد فلتر الجسيمات DPF بسبب المسافات القصيرة"],["Drive 20–30 minutes on a highway regularly so it regenerates, or clean it at a garage","السياقة 20–30 دقيقة في الطريق السيار بانتظام لتجديده أو تنظيفه في الكراج"]]]},
+{b:"Toyota",m:"Corolla",y:"2008–2018",p:[
+ [["Coolant leak from the water pump","تسرب سائل التبريد من مضخة الماء"],["Replace the water pump and the coolant","تغيير مضخة الماء وسائل التبريد"]],
+ [["A/C blows warm air","المكيف لا يبرد"],["Check refrigerant leaks, then the compressor and condenser","فحص تسرب الغاز ثم الكومبريسور والمبرد"]]]},
+{b:"Hyundai / Kia",m:"Tucson / Sportage 1.7 CRDi",y:"2015–2021",p:[
+ [["Jerky shifts in the dual-clutch (DCT) gearbox at low speed","تشنج في تغيير السرعات بعلبة DCT عند السرعة المنخفضة"],["Software update, gearbox oil service, or clutch replacement","تحديث البرنامج وتغيير زيت العلبة أو تغيير الدبرياج"]],
+ [["EGR valve clogging and rough idle","انسداد صمام EGR واهتزاز المحرك في الخمول"],["Clean the EGR valve and intake manifold","تنظيف صمام EGR وممر الهواء"]]]},
+{b:"Fiat",m:"Punto / Tipo Dualogic",y:"2008–2018",p:[
+ [["Robotized gearbox hesitates or gets stuck","العلبة الروبوتية تتردد أو تتوقف عن التبديل"],["Recalibrate and replace the actuator or clutch; manual gearbox swap is a lasting fix","إعادة المعايرة وتغيير المحرك الصغير أو الدبرياج وتحويلها لعلبة عادية حل دائم"]],
+ [["Battery drains overnight","البطارية تفرغ بين ليلة وضحاها"],["Test for a parasitic drain (door, radio, alarm) and replace an old battery","البحث عن تسرب الكهرباء (الباب، الراديو، الإنذار) وتغيير البطارية القديمة"]]]},
+{b:"Ford",m:"Fiesta 1.0 EcoBoost / PowerShift",y:"2012–2019",p:[
+ [["Clutch shudder in the PowerShift automatic","ارتعاش الدبرياج في علبة PowerShift الأوتوماتيكية"],["Update software and replace the dual clutch with the latest part","تحديث البرنامج وتغيير الدبرياج المزدوج بقطعة محدثة"]],
+ [["Coolant loss from the engine","فقدان سائل التبريد من المحرك"],["Pressure-test the cooling system and replace damaged hoses or the coolant parts","فحص ضغط نظام التبريد وتغيير الخراطيم التالفة"]]]}
+];
+CARS.push(
+{b:"Dacia",m:"Duster 1.5 dCi",y:"2012–2022",p:[
+ [["Noisy clutch and flywheel","صوت في الدبرياج والفولان"],["Replace clutch kit with flywheel","تغيير الدبرياج مع الفولان"]],
+ [["Front suspension wears fast on rough roads","تآكل سريع للتعليق الأمامي في الطرق الوعرة"],["Replace ball joints, bushings and shock absorbers","تغيير الروتول والبوشات والأمورتيسورات"]]]},
+{b:"Toyota",m:"Yaris (Hybrid)",y:"2012–2020",p:[
+ [["Hybrid battery loses capacity with age","بطارية الهجين تضعف مع الزمن"],["Test the battery, then refurbish or replace it at a hybrid specialist","فحص البطارية ثم إصلاحها أو تغييرها عند مختص في الهجين"]],
+ [["A/C weak in summer","المكيف ضعيف في الصيف"],["Refill refrigerant and check for leaks","تعبئة الغاز وفحص التسرب"]]]},
+{b:"Mercedes",m:"C-Class C220d (W205)",y:"2014–2021",p:[
+ [["AdBlue / NOx sensor warning","تحذير AdBlue أو حساس NOx"],["Diagnose with a scan tool, replace the faulty sensor or AdBlue pump","تشخيص بجهاز الكمبيوتر وتغيير الحساس أو مضخة AdBlue"]],
+ [["Worn engine mounts cause vibration","تآكل حوامل المحرك يسبب اهتزازا"],["Replace the engine mounts","تغيير حوامل المحرك"]]]},
+{b:"BMW",m:"3 Series 320d (F30)",y:"2012–2018",p:[
+ [["Timing chain wear on older N47 engines","تآكل سلسلة التوقيت في محركات N47 القديمة"],["Replace the chain at the first rattle, not after it breaks","تغييرها عند أول صوت طقطقة وليس بعد انكسارها"]],
+ [["Oil leak from the oil filter housing gasket","تسرب الزيت من جوان علبة الفلتر"],["Replace the gasket","تغيير الجوان"]]]}
+);
+var PR=[["132,000 – 200,000","60,000 – 110,000"],["190,000 – 260,000","70,000 – 120,000"],["210,000 – 290,000","80,000 – 170,000"],["330,000 – 450,000","130,000 – 230,000"],["300,000 – 400,000","90,000 – 220,000"],["330,000 – 450,000","150,000 – 280,000"],["190,000 – 250,000","40,000 – 110,000"],["—","60,000 – 120,000"],["220,000 – 300,000","100,000 – 190,000"],["200,000 – 280,000","80,000 – 150,000"],["520,000 – 750,000","250,000 – 480,000"],["480,000 – 650,000","200,000 – 400,000"]];
+CARS.forEach(function(c,k){c.pr=PR[k]});
+var WT=["Dacia Logan","Renault Clio","Peugeot 208","Volkswagen Golf","Toyota Corolla","Hyundai Tucson","Fiat Punto","Ford Fiesta","Dacia Duster","Toyota Yaris","Mercedes-Benz C-Class","BMW 3 Series"];
+var SP=[["1.5 dCi · 1461 cc","75–90","D"],["1.5 dCi · 1461 cc","75–90","D"],["1.2 PureTech · 1199 cc","82–130","T"],["1.6 TDI · 1598 cc","90–115","D"],["1.6–1.8 · 1598–1798 cc","132–140","P"],["1.7 CRDi · 1685 cc","115–141","D"],["1.3 Multijet · 1248 cc","75–95","D"],["1.0 EcoBoost · 999 cc","100–140","T"],["1.5 dCi · 1461 cc","90–110","D"],["1.5 Hybrid · 1497 cc","100","H"],["2.1 diesel · 2143 cc","170–194","D"],["2.0 diesel · 1995 cc","163–190","D"]];
+var F={D:["Diesel","ديزل"],P:["Petrol","بنزين"],T:["Turbo petrol","بنزين تيربو"],H:["Hybrid","هجين"],E:["Electric","كهربائي"],M:["Petrol / Diesel","بنزين / ديزل"]};
+CARS.forEach(function(c,k){c.w=WT[k];c.sp=SP[k]});
+var WB=["Wet timing belt (PureTech 1.2) degrades and can clog the oil system","حزام التوقيت المبلل (PureTech 1.2) يتآكل وقد يسد نظام الزيت","Replace it on schedule (about every 6 years / 100,000 km) with the exact oil specified","تغييره في وقته (حوالي كل 6 سنوات / 100,000 كلم) بالزيت المحدد بدقة"],
+EDC=["Dual-clutch (EDC/DSG) gearbox judders at low speed","علبة الدبرياج المزدوج (EDC/DSG) ترتعش عند السرعة المنخفضة","Gearbox oil service and software update; the clutch pack may need replacing","تغيير زيت العلبة وتحديث البرنامج وقد يلزم تغيير الدبرياج"],
+DPF=["Clogged particulate filter (DPF) from short urban trips","انسداد فلتر الجسيمات (DPF) بسبب المسافات القصيرة في المدينة","Drive 20–30 minutes on a highway regularly, or have it cleaned at a garage","السياقة 20–30 دقيقة في الطريق السيار بانتظام أو تنظيفه في الكراج"],
+EGR=["Clogged injectors / EGR valve: power loss, black smoke","انسداد البخاخات أو صمام EGR: ضعف في القوة ودخان أسود","Clean or replace injectors and EGR valve, use good diesel","تنظيف أو تغيير البخاخات وصمام EGR واستعمال مازوط جيد"],
+ADB=["AdBlue / SCR system warning (BlueHDi)","تحذير نظام AdBlue / SCR (BlueHDi)","Diagnose with a scan tool; clean or replace the faulty injector, heater or sensor","التشخيص بجهاز الكمبيوتر وتنظيف أو تغيير البخاخ أو المسخن أو الحساس المعطوب"],
+CHN=["Timing chain stretch on older 1.2 TSI engines (about 2010–2014)","تمدد سلسلة التوقيت في محركات 1.2 TSI القديمة (حوالي 2010–2014)","Replace the chain set at the first rattle","تغيير طقم السلسلة عند أول طقطقة"],
+INF=["Infotainment screen freezes or lags","شاشة المعلومات تتجمد أو تتأخر","Software update or system reset at the dealer","تحديث البرنامج أو إعادة ضبط النظام عند الوكيل"],
+AMT=["Automated manual (AMT) gearbox jerks when shifting","علبة AMT الآلية تتشنج عند التبديل","Clutch actuator service and software update","صيانة محرك الدبرياج وتحديث البرنامج"],
+CLU=["Clutch wears early and pedal feels hard","الدبرياج يتلف بسرعة والدواسة تصبح ثقيلة","Replace the clutch kit and avoid resting the foot on the pedal","تغيير طقم الدبرياج وتجنب وضع الرجل على الدواسة"],
+SUS=["Front suspension wears fast on rough roads or heavy loads","تآكل سريع للتعليق الأمامي في الطرق الوعرة أو الحمولة الثقيلة","Replace ball joints, bushings and shock absorbers","تغيير الروتول والبوشات والأمورتيسورات"],
+TCH=["Timing chain wear on older N47 diesel (118d, about 2007–2014)","تآكل سلسلة التوقيت في ديزل N47 القديم (118d حوالي 2007–2014)","Replace the chain at the first rattle, not after it breaks","تغييرها عند أول طقطقة وليس بعد انكسارها"],
+CLT=["Coolant leak from the thermostat housing (1.4 Turbo)","تسرب سائل التبريد من علبة الثرموستات (1.4 تيربو)","Replace the housing and top up the coolant","تغيير علبة الثرموستات وتعبئة سائل التبريد"];
+function A(b,m,y,w,sp,p){CARS.push({b:b,m:m,y:y,w:w,sp:sp,pr:["?","?"],p:p.map(function(q){return[[q[0],q[1]],[q[2],q[3]]]})})}
+A("BMW","1 Series 118d / 118i","2011–2026","BMW 1 Series",["1.5 (3 cyl) · 1499 cc / 2.0 diesel","136–156 (M135: 300)","M"],[TCH,EDC]);
+A("Renault","Captur 1.5 dCi / 0.9 TCe","2013–2026","Renault Captur",["1.5 dCi · 1461 cc / 0.9 TCe · 898 cc","90–115","M"],[EDC,EGR]);
+A("Renault","Megane 4 1.5 dCi","2016–2023","Renault Mégane",["1.5 dCi · 1461 cc","95–115","D"],[EDC,INF]);
+A("Renault","Symbol 1.5 dCi","2013–2020","Renault Symbol",["1.5 dCi · 1461 cc / 1.2 · 1149 cc","75–90","M"],[CLU,SUS]);
+A("Renault","Kangoo 1.5 dCi","2008–2021","Renault Kangoo",["1.5 dCi · 1461 cc","75–110","D"],[EGR,SUS]);
+A("Dacia","Jogger","2022–2026","Dacia Jogger",["1.0 TCe · 999 cc / Eco-G LPG / 1.8 Hybrid","100–140","M"],[]);
+A("Dacia","Spring","2021–2026","Dacia Spring",["Electric motor","45–65","E"],[]);
+A("Peugeot","301 1.5 BlueHDi / 1.2","2013–","Peugeot 301",["1.5 BlueHDi · 1499 cc / 1.2 PureTech · 1199 cc","82–100","M"],[WB]);
+A("Peugeot","2008 PureTech / BlueHDi","2013–2026","Peugeot 2008",["1.2 PureTech · 1199 cc / 1.5 BlueHDi · 1499 cc","100–130","M"],[WB,ADB]);
+A("Peugeot","3008 1.5 BlueHDi","2016–2026","Peugeot 3008",["1.5 BlueHDi · 1499 cc / 1.2 PureTech","130","M"],[ADB,INF]);
+A("Citroën","C3 PureTech / BlueHDi","2016–2026","Citroën C3",["1.2 PureTech · 1199 cc / 1.5 BlueHDi","82–110","M"],[WB,AMT]);
+A("Citroën","Berlingo 1.5 BlueHDi","2008–2026","Citroën Berlingo",["1.5 BlueHDi · 1499 cc / 1.6 HDi","75–130","D"],[DPF,SUS]);
+A("Skoda","Octavia 1.6 TDI","2013–2026","Škoda Octavia",["1.6–2.0 TDI / 1.4 TSI","105–150","M"],[EDC,DPF]);
+A("Skoda","Fabia 1.2 TSI","2010–2026","Škoda Fabia",["1.2 TSI · 1197 cc / 1.0 TSI","90–110","P"],[CHN]);
+A("SEAT","Ibiza 1.0 TSI / 1.6 TDI","2008–2026","SEAT Ibiza",["1.0 TSI / 1.2 TSI / 1.6 TDI","90–115","M"],[CHN,EDC]);
+A("SEAT","Leon 1.6 TDI","2013–2026","SEAT León",["1.6–2.0 TDI","115–150","D"],[EDC,DPF]);
+A("Opel","Corsa 1.2 PureTech","2019–2026","Opel Corsa",["1.2 PureTech · 1199 cc","75–130","P"],[WB]);
+A("Opel","Astra 1.6 CDTI / 1.4 Turbo","2010–2022","Opel Astra",["1.6 CDTI · 1598 cc / 1.4 Turbo","110–150","M"],[CLT,EGR]);
+A("Hyundai / Kia","i10 / Picanto 1.0–1.2","2014–2026","Hyundai i10",["1.0 · 998 cc / 1.2 · 1248 cc","67–84","P"],[AMT]);
+var AIR=["Air suspension leaks or the compressor fails (car sags, warning message)","تسرب في تعليق الهواء أو تعطل الكومبريسور (السيارة تنخفض وتظهر رسالة تحذير)","Replace the leaking air springs and the compressor at a specialist","تغيير بالونات الهواء المتسربة والكومبريسور عند مختص"],
+OIL=["Higher oil consumption on older 2.0 TFSI engines (about 2008–2012)","استهلاك زيت أكثر في محركات 2.0 TFSI القديمة (حوالي 2008–2012)","Check the oil level often; piston rings and PCV valve may need repair","مراقبة مستوى الزيت باستمرار وقد يلزم إصلاح الشنابر وصمام PCV"],
+IMS=["IMS bearing failure on older 996 / 997.1 engines (about 1999–2008)","عطب رولمان IMS في محركات 996 / 997.1 القديمة (حوالي 1999–2008)","Replace the IMS bearing preventively, ideally during a clutch job","تغيير رولمان IMS وقائيا ويفضل أثناء تغيير الدبرياج"],
+ISR=["Single-clutch ISR gearbox shifts roughly at low speed","علبة ISR بدبرياج واحد تبدل بخشونة عند السرعة المنخفضة","Clutch wear check and software update at a specialist","فحص تآكل الدبرياج وتحديث البرنامج عند مختص"],
+NOX=["AdBlue / NOx sensor warning","تحذير AdBlue أو حساس NOx","Diagnose with a scan tool, replace the faulty sensor or AdBlue pump","تشخيص بجهاز الكمبيوتر وتغيير الحساس أو مضخة AdBlue"],
+FDC=["Clutch shudder in the PowerShift automatic","ارتعاش الدبرياج في علبة PowerShift الأوتوماتيكية","Update software and replace the dual clutch with the latest part","تحديث البرنامج وتغيير الدبرياج المزدوج بقطعة محدثة"],
+COOL=["Coolant loss from the engine","فقدان سائل التبريد من المحرك","Pressure-test the cooling system and replace damaged hoses or parts","فحص ضغط نظام التبريد وتغيير الخراطيم أو القطع التالفة"],
+F1D=["Dual-clutch wears faster in stop-and-go traffic","الدبرياج المزدوج يتآكل أسرع في الزحمة","Have the clutch wear checked by a Ferrari specialist and replace it before it fails","فحص تآكل الدبرياج عند مختص فيراري وتغييره قبل أن يتعطل"];
+A("Renault","Clio 5 1.0 TCe / 1.5 dCi","2019–2026","Renault Clio V",["1.0 TCe · 999 cc / 1.5 Blue dCi / E-Tech hybrid","90–140","M"],[EDC,INF]);
+A("Renault","Arkana","2021–2026","Renault Arkana",["1.3 TCe · 1332 cc / E-Tech hybrid","140–160","M"],[]);
+A("Renault","Austral","2022–2026","Renault Austral",["1.2 mild hybrid / E-Tech full hybrid","130–200","H"],[]);
+A("Toyota","Yaris Cross (Hybrid)","2021–2026","Toyota Yaris Cross",["1.5 Hybrid · 1490 cc","116–130","H"],[]);
+A("Toyota","Hilux 2.4 D-4D","2016–2026","Toyota Hilux",["2.4 / 2.8 D-4D diesel","150–204","D"],[DPF,SUS]);
+A("Hyundai / Kia","i20 / Rio","2020–2026","Hyundai i20",["1.0 T-GDi · 998 cc / 1.2","84–120","P"],[]);
+A("Audi","A3 1.4 TFSI / 1.6 TDI","2013–2026","Audi A3",["1.4 / 1.5 TFSI / 1.6–2.0 TDI","110–150","M"],[EDC,DPF]);
+A("Audi","A4 2.0 TDI / 2.0 TFSI","2008–2026","Audi A4",["2.0 TDI · 1968 cc / 2.0 TFSI · 1984 cc","150–252","M"],[OIL,DPF]);
+A("Audi","Q5 2.0 TDI","2009–2026","Audi Q5",["2.0 TDI · 1968 cc","150–190","D"],[EDC,DPF]);
+A("Mercedes","A-Class A180d / A200","2018–2026","Mercedes-Benz A-Class",["1.5 diesel / 1.3 turbo petrol","116–163","M"],[INF]);
+A("Mercedes","E-Class E220d","2016–2026","Mercedes-Benz E-Class",["2.0 diesel · 1950 cc","194","D"],[NOX]);
+A("Volkswagen","Polo 1.0 TSI / 1.6 TDI","2010–2026","Volkswagen Polo",["1.0 TSI · 999 cc / 1.6 TDI","80–115","M"],[CHN,EDC]);
+A("Volkswagen","Tiguan 2.0 TDI","2016–2026","Volkswagen Tiguan",["2.0 TDI · 1968 cc / 1.4 TSI","150–190","M"],[EDC,DPF]);
+A("Ford","Focus 1.0 EcoBoost / 1.5 TDCi","2011–2025","Ford Focus",["1.0 EcoBoost · 999 cc / 1.5 TDCi","95–125","M"],[FDC,COOL]);
+A("Tesla","Model 3","2019–2026","Tesla Model 3",["Electric (RWD / AWD)","283–510","E"],[]);
+A("Ferrari","488 GTB / F8 Tributo","2015–2023","Ferrari 488",["3.9 V8 twin-turbo · 3902 cc","670–720","T"],[F1D]);
+A("Ferrari","296 GTB","2022–2026","Ferrari 296 GTB",["3.0 V6 twin-turbo plug-in hybrid","830","H"],[]);
+A("Ferrari","812 Superfast / GTS","2017–2024","Ferrari 812 Superfast",["6.5 V12 · 6496 cc","800","P"],[]);
+A("Ferrari","Purosangue","2023–2026","Ferrari Purosangue",["6.5 V12 · 6496 cc","725","P"],[]);
+A("Porsche","911 (992 / 991 / 997)","2005–2026","Porsche 911 (992)",["3.0 flat-6 twin-turbo / 3.8–4.0 flat-6","385–650","T"],[IMS]);
+A("Porsche","Cayenne 3.0","2010–2026","Porsche Cayenne",["3.0 V6 turbo / 3.0 V6 diesel / V8 turbo","262–640","M"],[AIR]);
+A("Porsche","Macan","2014–2026","Porsche Macan",["2.0 turbo / 2.9–3.0 V6 turbo / electric","245–440","M"],[]);
+A("Porsche","Panamera","2010–2026","Porsche Panamera",["2.9 V6 TT / 4.0 V8 TT / hybrid","330–630","M"],[AIR]);
+A("Porsche","718 Cayman / Boxster","2016–2026","Porsche 718 Cayman",["2.0–2.5 flat-4 turbo / 4.0 flat-6","300–420","T"],[]);
+A("Lamborghini","Huracán","2014–2024","Lamborghini Huracán",["5.2 V10 · 5204 cc","580–640","P"],[]);
+A("Lamborghini","Urus","2018–2026","Lamborghini Urus",["4.0 V8 twin-turbo · 3996 cc","650–666","T"],[]);
+A("Lamborghini","Aventador","2011–2022","Lamborghini Aventador",["6.5 V12 · 6498 cc","700–770","P"],[ISR]);
+A("Maserati","Ghibli / Levante","2013–2024","Maserati Ghibli (M157)",["3.0 V6 twin-turbo / 3.0 V6 diesel","250–430","M"],[]);
+A("Maserati","MC20","2021–2026","Maserati MC20",["3.0 V6 twin-turbo · 2992 cc","630","T"],[]);
+A("Aston Martin","DB11 / DB12","2016–2026","Aston Martin DB11",["4.0 V8 TT / 5.2 V12 TT","510–680","T"],[]);
+A("Aston Martin","Vantage","2018–2026","Aston Martin Vantage (2018)",["4.0 V8 twin-turbo · 3982 cc","510–665","T"],[]);
+A("Aston Martin","DBX","2020–2026","Aston Martin DBX",["4.0 V8 twin-turbo","550–707","T"],[]);
+A("McLaren","570S / 720S","2015–2023","McLaren 720S",["3.8–4.0 V8 twin-turbo","562–720","T"],[]);
+A("McLaren","Artura","2022–2026","McLaren Artura",["3.0 V6 TT plug-in hybrid","680","H"],[]);
+A("Bentley","Continental GT","2003–2026","Bentley Continental GT",["4.0 V8 TT / 6.0 W12 TT / hybrid","550–782","T"],[AIR]);
+A("Bentley","Bentayga","2016–2026","Bentley Bentayga",["4.0 V8 TT / 6.0 W12 TT","550–635","T"],[AIR]);
+A("Bentley","Flying Spur","2005–2026","Bentley Flying Spur",["4.0 V8 TT / 6.0 W12 TT","550–635","T"],[AIR]);
+A("Rolls-Royce","Ghost","2010–2026","Rolls-Royce Ghost",["6.75 V12 twin-turbo","563–600","T"],[]);
+A("Rolls-Royce","Cullinan","2018–2026","Rolls-Royce Cullinan",["6.75 V12 twin-turbo","571–600","T"],[]);
+A("Rolls-Royce","Phantom","2003–2026","Rolls-Royce Phantom VIII",["6.75 V12 twin-turbo","563–571","T"],[]);
+A("Lotus","Emira","2022–2026","Lotus Emira",["2.0 turbo / 3.5 V6 supercharged","360–400","P"],[]);
+A("Bugatti","Chiron","2016–2024","Bugatti Chiron",["8.0 W16 quad-turbo","1500","T"],[]);
+
+
+var MOTO={
+ "Honda":["CB125F","CBR125R","CBR250R","CBR500R","CB500F","CB650R","CBR650R","CBR1000RR-R Fireblade","Africa Twin CRF1100L","X-ADV 750","PCX 125","Forza 350","ADV 350"],
+ "Yamaha":["YBR125","MT-125","MT-03","MT-07","MT-09","MT-10","YZF-R3","YZF-R7","YZF-R1","Tenere 700","Tracer 9","XMAX 300","NMAX 125"],
+ "Suzuki":["GSX-R125","GSX-R600","GSX-R750","GSX-R1000R","GSX-S750","V-Strom 650","V-Strom 800","Hayabusa","Burgman 400"],
+ "Kawasaki":["Ninja 125","Ninja 400","Ninja 650","Ninja ZX-6R","Ninja ZX-10R","Z400","Z650","Z900","Versys 650","Vulcan S"],
+ "BMW Motorrad":["G 310 R","G 310 GS","F 750 GS","F 850 GS","F 900 R","F 900 GS","R 1250 GS","R 1300 GS","S 1000 RR","R 18"],
+ "KTM":["125 Duke","200 Duke","390 Duke","790 Duke","890 Duke","1290 Super Duke R","390 Adventure","790 Adventure","890 Adventure","RC 390"],
+ "Ducati":["Monster","Scrambler Icon","Panigale V2","Panigale V4","Multistrada V4","Diavel V4","Streetfighter V4"],
+ "Triumph":["Speed 400","Scrambler 400 X","Trident 660","Street Triple 765","Tiger 900","Tiger 1200","Bonneville T100","Bonneville T120"],
+ "Harley-Davidson":["Sportster S","Nightster","Street Bob","Fat Boy","Road King","Street Glide","Pan America 1250"],
+ "Royal Enfield":["Hunter 350","Classic 350","Meteor 350","Bullet 350","Himalayan 450","Interceptor 650","Continental GT 650"],
+ "Aprilia":["RS 125","RS 457","RS 660","RSV4","Tuono 660","Tuareg 660"],
+ "Kymco":["Agility 125","Like 125","Downtown 350","AK 550"],
+ "Piaggio":["Liberty 125","Medley 125","Beverly 300","MP3 300"],
+ "SYM":["Jet 14 125","Symphony 125","Cruisym 300"]
+};
+var EXTRA={"BMW":["1 Series","2 Series Active Tourer","2 Series Gran Coupé","3 Series","4 Series","5 Series","7 Series","X1","X3","X5","X6","X7","iX1","iX2","iX3","i4","i5","i7"],"Renault":["Clio","Captur","Megane","Symbol","Kangoo","Austral","Arkana","Kadjar","Koleos","Talisman","Express"],"Dacia":["Logan","Sandero","Duster","Jogger","Spring","Bigster","Dokker","Lodgy"],"Peugeot":["108","208","301","308","408","508","2008","3008","5008","Rifter","Partner","Expert","Boxer"],"Citroën":["C1","C3","C4","C4 X","C3 Aircross","C5 Aircross","C5 X","Berlingo","Jumpy","Jumper"],"Skoda":["Fabia","Scala","Octavia","Superb","Kamiq","Karoq","Kodiaq","Enyaq"],"SEAT":["Ibiza","Leon","Arona","Ateca","Tarraco"],"Opel":["Corsa","Astra","Mokka","Crossland","Grandland","Combo","Vivaro"]};
+var TX={en:{h1:"Cars, motorcycles, trucks, buses, models and real photos",sub:"Browse vehicle types, brands and models. Open a model to see real reference photos, specifications and known issues.",ph:"Search brands…",phm:"Search models…",brands:"Brands",models:"Models",back:"← Back",load:"Loading…",fail:"Live database unreachable. Showing built-in models only.",cur:"Full guide",eng:"Engine",hp:"Power (hp)",fuel:"Fuel",pn:"New price (MAD)",pu:"Used price (MAD)",pb:"Common problems and fixes",rec:"Official defect reports (NHTSA recalls)",fix:"Fix: ",norec:"No recalls found for this model and year.",pl:"Check current prices on",nop:"Not enough long-term problem data for this model yet.",noapi:"Recall data is available for US-market models only.",nodata:"Specs and prices for this model are not in our database yet.",src:"Source: Wikipedia",all:"All years",gal:"Photos (Wikimedia Commons)",g:"Search common problems on Google",foot:"Brand and model lists and recalls: NHTSA. Photos and summaries: Wikipedia and Wikimedia Commons (open each photo for its author and license). Prices are rough estimates, not offers. General guidance only: have a qualified mechanic inspect your car.",none:"No results.",ty:{car:"Cars",truck:"Trucks",motorcycle:"Motorcycles",bus:"Buses"}},
+ar:{h1:"السيارات والدراجات النارية والشاحنات والحافلات والموديلات والصور الحقيقية",sub:"تصفح أنواع المركبات والماركات والموديلات، وشاهد صورا حقيقية ومواصفات وأعطالا معروفة.",ph:"ابحث عن ماركة…",phm:"ابحث عن موديل…",brands:"الماركات",models:"الموديلات",back:"→ رجوع",load:"جار التحميل…",fail:"قاعدة البيانات المباشرة غير متاحة. تظهر الموديلات المضمنة فقط.",cur:"دليل كامل",eng:"المحرك",hp:"القوة (حصان)",fuel:"الوقود",pn:"سعر الجديد (درهم)",pu:"سعر المستعمل (درهم)",pb:"الأعطال الشائعة وحلولها",rec:"تقارير العيوب الرسمية (استدعاءات NHTSA)",fix:"الحل: ",norec:"لا توجد استدعاءات لهذا الموديل وهذه السنة.",pl:"راجع الأثمنة الحالية في",nop:"لا توجد بعد بيانات كافية عن أعطال هذا الموديل على المدى الطويل.",noapi:"بيانات الاستدعاءات متوفرة فقط للموديلات المباعة في السوق الأمريكي.",nodata:"المواصفات والأثمنة لهذا الموديل غير متوفرة بعد.",src:"المصدر: ويكيبيديا",all:"كل السنوات",gal:"صور (ويكيميديا كومنز)",g:"ابحث عن الأعطال الشائعة في Google",foot:"قوائم الماركات والموديلات والاستدعاءات: NHTSA. الصور والملخصات: ويكيبيديا وويكيميديا كومنز (افتح كل صورة لمعرفة صاحبها ورخصتها). الأثمنة تقريبية وليست عروضا. معلومات عامة فقط: اعرض سيارتك على ميكانيكي مختص.",none:"لا توجد نتائج.",ty:{car:"سيارات",truck:"شاحنات",motorcycle:"دراجات نارية",bus:"حافلات"}}};
+var CY=new Date().getFullYear(),L="en",API="https://vpic.nhtsa.dot.gov/api/vehicles/",B=[],failed=false;
+var S={t:"car",y:CY,v:"home",b:null,items:[],x:null};
+try{if(localStorage.getItem("lang")==="ar")L="ar"}catch(e){}
+var $=function(i){return document.getElementById(i)},N=function(s){return String(s).toLowerCase().replace(/[^a-z0-9]/g,"")},I=function(){return L==="ar"?1:0};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+var bm=function(a,b){return a.indexOf(b)===0||b.indexOf(a)===0},enc=encodeURIComponent;
+function nice(s){if(s.toLowerCase()==="kia")return"Kia";if(s.length<=3)return s.toUpperCase();return s.toLowerCase().replace(/(^|[\s-])(\w)/g,function(m,a,b){return a+b.toUpperCase()})}
+var LG=/logo|emblem|badge|symbol|icon|wordmark|\.svg|signature|flag/i,IC={};
+async function jget(u){var r=await fetch(u);if(!r.ok)throw 0;return r.json()}
+function fillSel(){var t=TX[L],o="";for(var k in t.ty)o+='<option value="'+k+'">'+t.ty[k]+'</option>';$("ty").innerHTML=o;$("ty").value=S.t;
+ o='<option value="all">'+t.all+'</option>';for(var y=CY+1;y>=1990;y--)o+='<option>'+y+'</option>';$("yr").innerHTML=o;$("yr").value=S.y}
+function ui(){var t=TX[L],h=document.documentElement;h.lang=L;h.dir=L==="ar"?"rtl":"ltr";
+ $("h1").textContent=t.h1;$("sub").textContent=t.sub;$("foot").textContent=t.foot;$("q").placeholder=S.v==="brand"?t.phm:t.ph;
+ var d=S.v==="detail";$("q").style.display=d?"none":"";document.querySelector(".bar").style.display=d?"none":"";
+ $("bEn").classList.toggle("on",L==="en");$("bAr").classList.toggle("on",L==="ar")}
+function curFor(k){return S.t!=="car"?[]:CARS.filter(function(c){return c.b.split("/").some(function(x){return bm(N(x),k)})})}
+async function loadBrands(){S.v="home";$("view").textContent=TX[L].load;B=[];failed=false;
+ try{var d=await jget(API+"GetMakesForVehicleType/"+S.t+"?format=json");B=d.Results.map(function(r){return{n:nice(r.MakeName),k:N(r.MakeName),id:r.MakeId}})}catch(e){failed=true}
+ if(S.t==="car")CARS.forEach(function(c){c.b.split("/").forEach(function(x){x=x.trim();var k=N(x);if(!B.some(function(b){return bm(b.k,k)}))B.push({n:x,k:k,id:null})})});
+ if(S.t==="car")Object.keys(EXTRA).forEach(function(n){var k=N(n);if(!B.some(function(b){return bm(b.k,k)}))B.push({n:n,k:k,id:null})});
+ if(S.t==="motorcycle")Object.keys(MOTO).forEach(function(n){var k=N(n);if(!B.some(function(b){return bm(b.k,k)}))B.push({n:n,k:k,id:null})});
+ B.sort(function(a,b){return a.n.localeCompare(b.n)});draw()}
+async function lazy(img){var t=img.dataset.t,u=IC[t];
+ if(u===undefined){u=null;try{var w=await jget("https://en.wikipedia.org/api/rest_v1/page/summary/"+enc(t.replace(/ /g,"_")));if(w.type!=="disambiguation"&&w.thumbnail&&!LG.test(w.thumbnail.source))u=w.thumbnail.source}catch(e){}IC[t]=u}
+ if(u){img.src=u;img.style.display="block"}}
+function draw(){ui();var t=TX[L],q=N($("q").value),h="";
+ if(S.v==="home"){var l=B.filter(function(b){return!q||b.k.indexOf(q)>=0});
+  h=(failed?'<p class="mut">'+t.fail+'</p>':"")+'<h2>'+t.brands+' ('+l.length+')</h2><div class="grid">'+l.map(function(b){return'<button class="chip" data-b="'+B.indexOf(b)+'">'+esc(b.n)+(curFor(b.k).length?'<small>'+t.cur+'</small>':"")+'</button>'}).join("")+'</div>'+(l.length?"":t.none)}
+ else if(S.v==="brand"){var m=S.items.filter(function(x){return!q||N(x.n).indexOf(q)>=0});
+  h='<button class="back" id="bk">'+t.back+'</button><h2>'+esc(S.b.n)+' · '+t.models+' ('+m.length+')</h2><div class="grid">'+m.map(function(x){return'<button class="chip" data-m="'+S.items.indexOf(x)+'"><img class="th" alt="" style="display:none" data-t="'+esc(x.c?x.c.w:S.b.n+" "+x.n)+'">'+esc(x.n)+(x.c?'<small>'+t.cur+'</small>':"")+'</button>'}).join("")+'</div>'+(m.length?"":t.none)}
+ $("view").innerHTML=h;
+ $("view").querySelectorAll("[data-b]").forEach(function(e){e.onclick=function(){openBrand(B[+e.dataset.b])}});
+ $("view").querySelectorAll("[data-m]").forEach(function(e){e.onclick=function(){openModel(S.items[+e.dataset.m])}});
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){io.unobserve(e.target);lazy(e.target)}})},{rootMargin:"250px"});
+ $("view").querySelectorAll("img.th").forEach(function(i){io.observe(i)});
+ var bk=$("bk");if(bk)bk.onclick=function(){S.v="home";$("q").value="";draw()}}
+async function openBrand(b){S.v="brand";S.b=b;S.items=[];$("q").value="";$("view").textContent=TX[L].load;
+ var cur=curFor(b.k),names=[],mk=enc(b.n),y=S.y,urls=[];
+ if(y!=="all"){urls.push(API+"GetModelsForMakeYear/make/"+mk+"/modelyear/"+y+"/vehicletype/"+S.t+"?format=json",API+"GetModelsForMakeYear/make/"+mk+"/modelyear/"+y+"?format=json")}
+ if(b.id)urls.push(API+"GetModelsForMakeId/"+b.id+"?format=json");
+ for(var j=0;j<urls.length&&!names.length;j++){try{var d=await jget(urls[j]);d.Results.forEach(function(r){if(names.indexOf(r.Model_Name)<0)names.push(r.Model_Name)})}catch(e){}}
+ names.sort();var used=[];
+ S.items=names.map(function(n){var c=N(n).length>=3?cur.filter(function(c){return N(c.m).indexOf(N(n))>=0})[0]:null;if(c)used.push(c);return{n:n,c:c,us:true}});
+ cur.forEach(function(c){if(used.indexOf(c)<0)S.items.push({n:c.m,c:c,us:false})});
+ if(S.t==="car")Object.keys(EXTRA).forEach(function(n){if(!bm(N(n),b.k))return;EXTRA[n].forEach(function(m){var k=N(m);if(!S.items.some(function(x){return N(x.n)===k||(x.c&&N(x.c.m).indexOf(k)===0)}))S.items.push({n:m,c:null,us:false})})});
+ if(S.t==="motorcycle"){var mkName=Object.keys(MOTO).find(function(n){return bm(N(n),b.k)||bm(b.k,N(n))});if(mkName)MOTO[mkName].forEach(function(m){if(!S.items.some(function(x){return N(x.n)===N(m)}))S.items.push({n:m,c:null,us:false})})}
+ S.items.sort(function(a,b){return a.n.localeCompare(b.n,undefined,{numeric:true})});draw()}
+async function wiki(title){var lg=L==="ar"?["ar","en"]:["en"];
+ for(var j=0;j<lg.length;j++){try{var w=await jget("https://"+lg[j]+".wikipedia.org/api/rest_v1/page/summary/"+enc(title.replace(/ /g,"_")));if(w.type!=="disambiguation")return w}catch(e){}}
+ try{var o=await jget("https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&origin=*&search="+enc(title));if(o[1][0])return await jget("https://en.wikipedia.org/api/rest_v1/page/summary/"+enc(o[1][0].replace(/ /g,"_")))}catch(e){}return null}
+async function commons(title){try{var d=await jget("https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrlimit=15&prop=imageinfo&iiprop=url%7Cmime&iiurlwidth=360&format=json&origin=*&gsrsearch="+enc(title+" filetype:bitmap"));
+ return Object.keys(d.query.pages).map(function(k){var p=d.query.pages[k],i=p.imageinfo&&p.imageinfo[0];if(i)i.t=p.title;return i}).filter(function(i){return i&&i.mime==="image/jpeg"&&!LG.test(i.t)}).slice(0,6)}catch(e){return[]}}
+async function recalls(x){var el=$("rec");if(!el)return;var t=TX[L],y=$("ry").value;
+ if(!x.us){el.innerHTML='<p class="mut">'+t.noapi+'</p>';return}
+ el.innerHTML=t.load;
+ try{var d=await jget("https://api.nhtsa.gov/recalls/recallsByVehicle?make="+enc(S.b.n)+"&model="+enc(x.n)+"&modelYear="+y);var r=d.results||[];
+  el.innerHTML=r.length?r.slice(0,10).map(function(c){return'<div class="rc"><b>'+esc(c.Component||"")+'</b> · <a target="_blank" rel="noopener" href="https://www.nhtsa.gov/recalls?nhtsaId='+esc(c.NHTSACampaignNumber)+'">'+esc(c.NHTSACampaignNumber)+'</a><div>'+esc((c.Summary||"").slice(0,350))+'</div><i>'+t.fix+esc((c.Remedy||"").slice(0,300))+'</i></div>'}).join(""):'<p class="mut">'+t.norec+'</p>'}
+ catch(e){el.innerHTML='<p class="mut">'+t.fail+'</p>'}}
+async function openModel(x){S.v="detail";S.x=x;var t=TX[L],b=S.b,c=x.c;ui();var nm=esc(b.n+" "+(c&&!x.us?c.m:x.n)),title=c?c.w:b.n+" "+x.n;
+ $("view").innerHTML='<button class="back" id="bk">'+t.back+'</button><h2>'+nm+'</h2><div class="mut">'+t.load+'</div>';$("bk").onclick=function(){S.v="brand";draw()};
+ var photoTitle=S.t==="motorcycle"?title+" motorcycle":title;var r=await Promise.all([wiki(title),commons(photoTitle)]),w=r[0],g=r[1],img=w&&w.thumbnail&&!LG.test(w.thumbnail.source)?w.thumbnail.source:(g[0]?g[0].thumburl:null);
+ var h='<button class="back" id="bk">'+t.back+'</button><h2>'+nm+'</h2><div class="detail"><div>'+(img?'<img alt="'+nm+'" src="'+esc(img)+'">':'<div class="ph">🚗</div>')+
+ (g.length?'<div class="gal" title="'+t.gal+'">'+g.map(function(i){return'<a href="'+esc(i.descriptionurl)+'" target="_blank" rel="noopener"><img loading="lazy" alt="" src="'+esc(i.thumburl)+'"></a>'}).join("")+'</div>':"")+'</div><div>';
+ if(w&&w.extract)h+='<div class="box"><p style="margin:0">'+esc(w.extract)+'</p>'+(w.content_urls?'<p class="mut" style="margin:6px 0 0"><a href="'+esc(w.content_urls.desktop.page)+'" target="_blank" rel="noopener">'+t.src+'</a></p>':"")+'</div>';
+ if(c){h+='<div class="box"><table><tr><td>'+t.eng+'</td><td>'+esc(c.sp[0])+'</td></tr><tr><td>'+t.hp+'</td><td>'+esc(c.sp[1])+'</td></tr><tr><td>'+t.fuel+'</td><td>'+F[c.sp[2]][I()]+'</td></tr></table></div>'+(c.pr[0]==="?"?'<div class="box mut">'+t.pl+' <a href="https://www.moteur.ma" target="_blank" rel="noopener">Moteur.ma</a> · <a href="https://www.avito.ma" target="_blank" rel="noopener">Avito.ma</a></div>':'<div class="box pr"><div>'+t.pn+'<b>'+c.pr[0]+'</b></div><div>'+t.pu+'<b>'+c.pr[1]+'</b></div></div>')+'<div class="box"><h3>'+t.pb+'</h3>'+(c.p.length?"":'<p class="mut" style="margin:0">'+t.nop+'</p>')+c.p.map(function(p){return'<div class="p"><div class="t">'+esc(p[0][I()])+'</div><div class="s">'+esc(p[1][I()])+'</div></div>'}).join("")+'</div>'}
+ else h+='<div class="box mut">'+t.nodata+'</div>';
+ var dy=S.y==="all"?CY-1:S.y,ys="";for(var y=CY+1;y>=1990;y--)ys+='<option'+(y==dy?" selected":"")+'>'+y+'</option>';
+ h+='<div class="box"><h3>'+t.rec+' <select id="ry">'+ys+'</select></h3><div id="rec"></div><p style="margin:8px 0 0"><a target="_blank" rel="noopener" href="https://www.google.com/search?q='+enc(b.n+" "+x.n+" common problems")+'">'+t.g+'</a></p></div></div></div>';
+ $("view").innerHTML=h;$("bk").onclick=function(){S.v="brand";draw()};$("ry").onchange=function(){recalls(x)};recalls(x)}
+function setL(l){L=l;try{localStorage.setItem("lang",l)}catch(e){}fillSel();S.v==="detail"&&S.x?openModel(S.x):draw()}
+$("bEn").onclick=function(){setL("en")};$("bAr").onclick=function(){setL("ar")};
+$("q").oninput=draw;$("logo").onclick=function(){S.v="home";S.b=null;$("q").value="";draw()};
+$("ty").onchange=function(){S.t=$("ty").value;loadBrands()};
+$("yr").onchange=function(){S.y=$("yr").value==="all"?"all":+$("yr").value;if(S.v==="brand")openBrand(S.b)};
+fillSel();loadBrands();
+</script></body></html>
