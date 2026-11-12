@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Car Guide</title>
+<title>Car Guide · دليل السيارات</title>
+<meta name="description" content="Car Guide: cars, trucks, motorcycles and buses with photos, specs, known problems and fixes. دليل السيارات والشاحنات والدراجات والحافلات: الصور والمواصفات والأعطال وحلولها.">
 <style>
 :root{--bg:#f4f6f8;--card:#fff;--tx:#17202a;--mut:#5d6874;--ac:#0b5fd1;--bd:#dce1e7;--bad:#b3261e;--good:#0b7a4f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--card:#171d24;--tx:#e8eaed;--mut:#9aa5b1;--ac:#6aa6ff;--bd:#28313b;--bad:#f2867f;--good:#4cc79a}}
@@ -22,7 +23,7 @@ input{width:100%;font:inherit;padding:13px 14px;border:1px solid var(--bd);borde
 table{width:100%;border-collapse:collapse}td{padding:6px 0;border-top:1px solid var(--bd)}td:last-child{text-align:end;font-weight:600}
 .pr{display:grid;grid-template-columns:1fr 1fr;gap:8px}.pr div{background:var(--bg);border-radius:8px;padding:8px 10px;font-size:.9rem}.pr b{display:block;color:var(--ac)}
 .p{border-top:1px solid var(--bd);padding:8px 0}.p .t{color:var(--bad);font-weight:600}.p .s{color:var(--good)}.p .t::before{content:"⚠ "}.p .s::before{content:"✔ "}
-.bar{display:flex;gap:8px;margin-top:8px}.bar select{flex:1;font:inherit;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx)}.th{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;margin-bottom:6px;background:var(--bg)}.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}.gal img{aspect-ratio:4/3;object-fit:cover;border-radius:8px}.rc{border-top:1px solid var(--bd);padding:8px 0;font-size:.92rem}.rc b{color:var(--bad)}.rc i{display:block;color:var(--good);font-style:normal}.ad{margin:14px auto;text-align:center;min-height:90px}.mut{color:var(--mut)}footer{padding:20px 0 30px;color:var(--mut);font-size:.85rem}.site-links{display:flex;flex-wrap:wrap;gap:16px;padding:14px 0;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);margin-top:18px}.site-links a{color:var(--ac);text-decoration:none;font-weight:600}.site-links a:hover{text-decoration:underline}
+.bar{display:flex;gap:8px;margin-top:8px}.bar select{flex:1;font:inherit;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx)}.th{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;margin-bottom:6px;background:var(--bg)}.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}.gal img{aspect-ratio:4/3;object-fit:cover;border-radius:8px}.rc{border-top:1px solid var(--bd);padding:8px 0;font-size:.92rem}.rc b{color:var(--bad)}.rc i{display:block;color:var(--good);font-style:normal}.fl{display:flex;gap:14px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--bd)}.fl a{color:var(--ac)}.ad{margin:14px auto;text-align:center;min-height:90px}.mut{color:var(--mut)}footer{padding:20px 0 30px;color:var(--mut);font-size:.85rem}
 </style>
 <!-- GOOGLE ADSENSE: after approval, uncomment and put your publisher ID
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
@@ -32,9 +33,9 @@ table{width:100%;border-collapse:collapse}td{padding:6px 0;border-top:1px solid 
 <div class="wrap">
 <div class="hero"><h1 id="h1"></h1><p id="sub"></p><input id="q" type="search"><div class="bar"><select id="ty"></select><select id="yr"></select></div></div>
 <div class="ad"><!-- ADSENSE SLOT 1 --></div>
-<div id="view"></div>
+<div id="view"><noscript>Please enable JavaScript to browse the guide. المرجو تفعيل JavaScript لتصفح الدليل.</noscript></div>
 <div class="ad"><!-- ADSENSE SLOT 2 --></div>
-<nav class="site-links" aria-label="Site information"><a href="guides.html">Buying & Maintenance Guides</a><a href="about.html">About Us</a><a href="contact.html">Contact Us</a><a href="privacy-policy.html">Privacy Policy</a></nav>
+<nav class="fl"><a href="articles.html">المقالات · Articles</a><a href="about.html">من نحن · About</a><a href="contact.html">اتصل بنا · Contact</a><a href="privacy.html">الخصوصية · Privacy</a></nav>
 <footer id="foot"></footer>
 </div>
 <script>
@@ -96,7 +97,7 @@ CLU=["Clutch wears early and pedal feels hard","الدبرياج يتلف بسر
 SUS=["Front suspension wears fast on rough roads or heavy loads","تآكل سريع للتعليق الأمامي في الطرق الوعرة أو الحمولة الثقيلة","Replace ball joints, bushings and shock absorbers","تغيير الروتول والبوشات والأمورتيسورات"],
 TCH=["Timing chain wear on older N47 diesel (118d, about 2007–2014)","تآكل سلسلة التوقيت في ديزل N47 القديم (118d حوالي 2007–2014)","Replace the chain at the first rattle, not after it breaks","تغييرها عند أول طقطقة وليس بعد انكسارها"],
 CLT=["Coolant leak from the thermostat housing (1.4 Turbo)","تسرب سائل التبريد من علبة الثرموستات (1.4 تيربو)","Replace the housing and top up the coolant","تغيير علبة الثرموستات وتعبئة سائل التبريد"];
-function A(b,m,y,w,sp,p){CARS.push({b:b,m:m,y:y,w:w,sp:sp,pr:["?","?"],p:p.map(function(q){return[[q[0],q[1]],[q[2],q[3]]]})})}
+function A(b,m,y,w,sp,p,t){CARS.push({t:t||"car",b:b,m:m,y:y,w:w,sp:sp,pr:["?","?"],p:p.map(function(q){return[[q[0],q[1]],[q[2],q[3]]]})})}
 A("BMW","1 Series 118d / 118i","2011–2026","BMW 1 Series",["1.5 (3 cyl) · 1499 cc / 2.0 diesel","136–156 (M135: 300)","M"],[TCH,EDC]);
 A("Renault","Captur 1.5 dCi / 0.9 TCe","2013–2026","Renault Captur",["1.5 dCi · 1461 cc / 0.9 TCe · 898 cc","90–115","M"],[EDC,EGR]);
 A("Renault","Megane 4 1.5 dCi","2016–2023","Renault Mégane",["1.5 dCi · 1461 cc","95–115","D"],[EDC,INF]);
@@ -166,27 +167,83 @@ A("Rolls-Royce","Cullinan","2018–2026","Rolls-Royce Cullinan",["6.75 V12 twin-
 A("Rolls-Royce","Phantom","2003–2026","Rolls-Royce Phantom VIII",["6.75 V12 twin-turbo","563–571","T"],[]);
 A("Lotus","Emira","2022–2026","Lotus Emira",["2.0 turbo / 3.5 V6 supercharged","360–400","P"],[]);
 A("Bugatti","Chiron","2016–2024","Bugatti Chiron",["8.0 W16 quad-turbo","1500","T"],[]);
+var CHAIN=["Drive chain stretches and sprockets wear","السلسلة تتمدد وتتآكل الأسنان","Lubricate the chain every 500 km; replace chain and both sprockets together","تشحيم السلسلة كل 500 كلم وتغيير السلسلة مع الترسين معا"],
+CVT=["Variator rollers and belt wear: weak acceleration, vibration","تآكل رولمات الفاريوتور والحزام: تسارع ضعيف واهتزاز","Replace rollers and belt about every 15,000–20,000 km","تغيير الرولمات والحزام تقريبا كل 15,000–20,000 كلم"],
+DESMO=["Valve clearance (Desmo) service is due at fixed intervals","فحص خلوص الصمامات (Desmo) واجب في فترات محددة","Follow the service book and use a Ducati specialist","احترام دفتر الصيانة والذهاب إلى مختص دوكاتي"],
+MT9=["Abrupt, jerky throttle response on first-generation MT-09 (about 2014–2016)","استجابة خانق عنيفة ومتقطعة في الجيل الأول من MT-09 (حوالي 2014–2016)","ECU software update at a Yamaha dealer","تحديث برنامج الكمبيوتر عند وكيل ياماها"],
+SCR=["AdBlue / SCR system fault (power reduced warning)","عطل نظام AdBlue / SCR (تحذير تقليل القوة)","Diagnose, then clean or replace the dosing module, NOx sensor or heater; use quality AdBlue","التشخيص ثم تنظيف أو تغيير وحدة الحقن أو حساس NOx أو المسخن واستعمال AdBlue جيد"],
+WBE=["Wet timing belt (2.0 EcoBlue) can degrade over time","حزام التوقيت المبلل (2.0 EcoBlue) قد يتآكل مع الزمن","Replace the belt on schedule with the correct oil","تغيير الحزام في وقته بالزيت الصحيح"];
+var MO="motorcycle",TR="truck",BU="bus";
+A("Honda","CBR600RR","2003–2024","Honda CBR600RR",["599 cc inline-4","118","P"],[CHAIN],MO);
+A("Honda","CBR1000RR-R Fireblade","2020–2026","Honda CBR1000RR-R Fireblade",["999 cc inline-4","215","P"],[CHAIN],MO);
+A("Honda","Africa Twin CRF1100L","2020–2026","Honda Africa Twin",["1084 cc parallel twin","102–115","P"],[CHAIN],MO);
+A("Honda","PCX 125","2010–2026","Honda PCX",["125 cc single","12","P"],[CVT],MO);
+A("Honda","Forza 350","2021–2026","Honda Forza",["330 cc single","29","P"],[CVT],MO);
+A("Yamaha","YZF-R1","2015–2026","Yamaha YZF-R1",["998 cc crossplane inline-4","200","P"],[CHAIN],MO);
+A("Yamaha","MT-07","2014–2026","Yamaha MT-07",["689 cc parallel twin","73","P"],[CHAIN],MO);
+A("Yamaha","MT-09","2014–2026","Yamaha MT-09",["890 cc triple","119","P"],[MT9,CHAIN],MO);
+A("Yamaha","TMAX","2001–2026","Yamaha TMAX",["562 cc parallel twin","47","P"],[CVT],MO);
+A("Yamaha","NMAX 125","2015–2026","Yamaha NMAX",["125 cc single","12","P"],[CVT],MO);
+A("Yamaha","Ténéré 700","2019–2026","Yamaha Ténéré 700",["689 cc parallel twin","72","P"],[CHAIN],MO);
+A("Kawasaki","Ninja ZX-10R","2016–2026","Kawasaki Ninja ZX-10R",["998 cc inline-4","203","P"],[CHAIN],MO);
+A("Kawasaki","Z900","2017–2026","Kawasaki Z900",["948 cc inline-4","125","P"],[CHAIN],MO);
+A("Kawasaki","Ninja 400","2018–2026","Kawasaki Ninja 400",["399 cc parallel twin","45","P"],[CHAIN],MO);
+A("Kawasaki","Versys 650","2015–2026","Kawasaki Versys 650",["649 cc parallel twin","67","P"],[CHAIN],MO);
+A("Suzuki","GSX-R1000","2017–2026","Suzuki GSX-R1000",["999 cc inline-4","202","P"],[CHAIN],MO);
+A("Suzuki","Hayabusa","2021–2026","Suzuki Hayabusa",["1340 cc inline-4","187","P"],[CHAIN],MO);
+A("Suzuki","V-Strom 650","2017–2026","Suzuki V-Strom 650",["645 cc V-twin","71","P"],[CHAIN],MO);
+A("Suzuki","Burgman 125","2007–2026","Suzuki Burgman",["125 cc single","9","P"],[CVT],MO);
+A("KTM","390 Duke","2017–2026","KTM 390 Duke",["399 cc single","44","P"],[CHAIN],MO);
+A("KTM","790 Duke","2018–2023","KTM 790 Duke",["799 cc parallel twin","105","P"],[CHAIN],MO);
+A("KTM","1290 Super Duke R","2014–2026","KTM 1290 Super Duke R",["1301 cc V-twin","180","P"],[CHAIN],MO);
+A("KTM","1290 Super Adventure","2015–2026","KTM 1290 Super Adventure",["1301 cc V-twin","160","P"],[CHAIN],MO);
+A("Ducati","Panigale V4","2018–2026","Ducati Panigale V4",["1103 cc V4","215–220","P"],[DESMO],MO);
+A("Ducati","Monster","2014–2026","Ducati Monster",["937 cc L-twin","111","P"],[DESMO],MO);
+A("Ducati","Multistrada V4","2021–2026","Ducati Multistrada",["1158 cc V4","170","P"],[DESMO],MO);
+A("Ducati","Scrambler","2015–2026","Ducati Scrambler",["803 cc L-twin","73","P"],[DESMO],MO);
+A("BMW","S 1000 RR","2010–2026","BMW S 1000 RR",["999 cc inline-4","205–210","P"],[CHAIN],MO);
+A("BMW","R 1250 GS","2019–2026","BMW R 1250 GS",["1254 cc boxer twin","136","P"],[],MO);
+A("BMW","R nineT","2014–2023","BMW R nineT",["1170 cc boxer twin","110","P"],[],MO);
+A("BMW","F 850 GS","2018–2026","BMW F 850 GS",["853 cc parallel twin","95","P"],[CHAIN],MO);
+A("BMW","G 310 R","2016–2026","BMW G 310 R",["313 cc single","34","P"],[CHAIN],MO);
+A("Triumph","Street Triple","2007–2026","Triumph Street Triple",["765 cc triple","118–128","P"],[CHAIN],MO);
+A("Triumph","Speed Triple 1200 RS","2018–2026","Triumph Speed Triple",["1160 cc triple","180","P"],[CHAIN],MO);
+A("Triumph","Tiger 900","2020–2026","Triumph Tiger 900",["888 cc triple","108","P"],[CHAIN],MO);
+A("Harley-Davidson","Street Glide","2014–2026","Harley-Davidson Street Glide",["1868 cc V-twin (Milwaukee-Eight)","90–95","P"],[],MO);
+A("Harley-Davidson","Iron 883","2009–2021","Harley-Davidson Iron 883",["883 cc V-twin","50","P"],[],MO);
+A("Vespa","Primavera 125","2013–2026","Vespa Primavera",["125 cc single","12","P"],[CVT],MO);
+A("Vespa","GTS 300","2008–2026","Vespa GTS",["278 cc single","23","P"],[CVT],MO);
+A("Peugeot","Django 125","2014–2026","Peugeot Django",["125 cc single","11–12","P"],[CVT],MO);
+A("Toyota","Hilux 2.4 D-4D","2016–2026","Toyota Hilux",["2.4 / 2.8 D-4D diesel","150–204","D"],[DPF,SUS],TR);
+A("Ford","Ranger 2.0 / 3.2 diesel","2012–2026","Ford Ranger",["2.0 EcoBlue / 3.2 TDCi","130–213","D"],[WBE],TR);
+A("Isuzu","D-Max 1.9 / 3.0","2012–2026","Isuzu D-Max",["1.9 / 3.0 diesel","150–190","D"],[DPF],TR);
+A("Mitsubishi","L200 / Triton 2.4","2015–2026","Mitsubishi L200",["2.4 diesel","150–181","D"],[DPF],TR);
+A("Nissan","Navara 2.3 dCi","2015–2026","Nissan Navara",["2.3 dCi diesel","160–190","D"],[],TR);
+A("Volkswagen","Amarok 2.0 TDI / 3.0 V6","2010–2026","Volkswagen Amarok",["2.0 TDI / 3.0 V6 TDI","140–258","D"],[DPF],TR);
+A("Mercedes","Actros","1996–2026","Mercedes-Benz Actros",["OM 471 · 12.8 L diesel","421–625","D"],[SCR],TR);
+A("Volvo","FH","1993–2026","Volvo FH",["D13 · 12.8 L / D17 · 16.1 L diesel","420–780","D"],[SCR],TR);
+A("Scania","R-series","2004–2026","Scania R-series",["DC13 · 13 L / DC16 V8 diesel","360–770","D"],[SCR],TR);
+A("MAN","TGX","2007–2026","MAN TGX",["D26 · 12.4 L diesel","400–640","D"],[SCR],TR);
+A("DAF","XF","1997–2026","DAF XF",["MX-11 / MX-13 diesel","330–530","D"],[SCR],TR);
+A("Renault","Trucks T","2013–2026","Renault Trucks T",["DTI 13 · 13 L diesel","380–520","D"],[SCR],TR);
+A("Iveco","Daily","1978–2026","Iveco Daily",["2.3 / 3.0 diesel","116–210","D"],[DPF],TR);
+A("Renault","Master 2.3 dCi","2010–2026","Renault Master",["2.3 dCi diesel","135–180","D"],[EGR],TR);
+A("Mercedes","Sprinter","1995–2026","Mercedes-Benz Sprinter",["2.1 diesel","114–190","D"],[EGR,DPF],TR);
+A("Ford","Transit 2.0 EcoBlue","2000–2026","Ford Transit",["2.0 EcoBlue diesel","105–185","D"],[WBE],TR);
+A("Peugeot","Boxer 2.2 BlueHDi","2006–2026","Peugeot Boxer",["2.2 BlueHDi diesel","120–165","D"],[ADB],TR);
+A("Mercedes","Tourismo","1994–2026","Mercedes-Benz Tourismo",["OM 470 / OM 471 diesel","430–510","D"],[SCR],BU);
+A("Mercedes","Citaro","1997–2026","Mercedes-Benz Citaro",["OM 936 · 7.7 L diesel","245–354","D"],[SCR],BU);
+A("Volvo","9700","2001–2026","Volvo 9700",["D8K / D11K diesel","350–460","D"],[SCR],BU);
+A("Scania","Touring / Interlink","2010–2026","Scania Touring",["DC09 / DC13 diesel","280–450","D"],[SCR],BU);
+A("MAN","Lion's Coach","2006–2026","MAN Lion's Coach",["D26 diesel","400–480","D"],[SCR],BU);
+A("Iveco","Crossway","2006–2026","Iveco Crossway",["Tector 6 / Cursor 9 diesel","280–360","D"],[SCR],BU);
+A("Yutong","ZK series","2005–2026","Yutong ZK6122H9",["Diesel and electric variants","varies by model","M"],[],BU);
 
 
-var MOTO={
- "Honda":["CB125F","CBR125R","CBR250R","CBR500R","CB500F","CB650R","CBR650R","CBR1000RR-R Fireblade","Africa Twin CRF1100L","X-ADV 750","PCX 125","Forza 350","ADV 350"],
- "Yamaha":["YBR125","MT-125","MT-03","MT-07","MT-09","MT-10","YZF-R3","YZF-R7","YZF-R1","Tenere 700","Tracer 9","XMAX 300","NMAX 125"],
- "Suzuki":["GSX-R125","GSX-R600","GSX-R750","GSX-R1000R","GSX-S750","V-Strom 650","V-Strom 800","Hayabusa","Burgman 400"],
- "Kawasaki":["Ninja 125","Ninja 400","Ninja 650","Ninja ZX-6R","Ninja ZX-10R","Z400","Z650","Z900","Versys 650","Vulcan S"],
- "BMW Motorrad":["G 310 R","G 310 GS","F 750 GS","F 850 GS","F 900 R","F 900 GS","R 1250 GS","R 1300 GS","S 1000 RR","R 18"],
- "KTM":["125 Duke","200 Duke","390 Duke","790 Duke","890 Duke","1290 Super Duke R","390 Adventure","790 Adventure","890 Adventure","RC 390"],
- "Ducati":["Monster","Scrambler Icon","Panigale V2","Panigale V4","Multistrada V4","Diavel V4","Streetfighter V4"],
- "Triumph":["Speed 400","Scrambler 400 X","Trident 660","Street Triple 765","Tiger 900","Tiger 1200","Bonneville T100","Bonneville T120"],
- "Harley-Davidson":["Sportster S","Nightster","Street Bob","Fat Boy","Road King","Street Glide","Pan America 1250"],
- "Royal Enfield":["Hunter 350","Classic 350","Meteor 350","Bullet 350","Himalayan 450","Interceptor 650","Continental GT 650"],
- "Aprilia":["RS 125","RS 457","RS 660","RSV4","Tuono 660","Tuareg 660"],
- "Kymco":["Agility 125","Like 125","Downtown 350","AK 550"],
- "Piaggio":["Liberty 125","Medley 125","Beverly 300","MP3 300"],
- "SYM":["Jet 14 125","Symphony 125","Cruisym 300"]
-};
-var EXTRA={"BMW":["1 Series","2 Series Active Tourer","2 Series Gran Coupé","3 Series","4 Series","5 Series","7 Series","X1","X3","X5","X6","X7","iX1","iX2","iX3","i4","i5","i7"],"Renault":["Clio","Captur","Megane","Symbol","Kangoo","Austral","Arkana","Kadjar","Koleos","Talisman","Express"],"Dacia":["Logan","Sandero","Duster","Jogger","Spring","Bigster","Dokker","Lodgy"],"Peugeot":["108","208","301","308","408","508","2008","3008","5008","Rifter","Partner","Expert","Boxer"],"Citroën":["C1","C3","C4","C4 X","C3 Aircross","C5 Aircross","C5 X","Berlingo","Jumpy","Jumper"],"Skoda":["Fabia","Scala","Octavia","Superb","Kamiq","Karoq","Kodiaq","Enyaq"],"SEAT":["Ibiza","Leon","Arona","Ateca","Tarraco"],"Opel":["Corsa","Astra","Mokka","Crossland","Grandland","Combo","Vivaro"]};
-var TX={en:{h1:"Cars, motorcycles, trucks, buses, models and real photos",sub:"Browse vehicle types, brands and models. Open a model to see real reference photos, specifications and known issues.",ph:"Search brands…",phm:"Search models…",brands:"Brands",models:"Models",back:"← Back",load:"Loading…",fail:"Live database unreachable. Showing built-in models only.",cur:"Full guide",eng:"Engine",hp:"Power (hp)",fuel:"Fuel",pn:"New price (MAD)",pu:"Used price (MAD)",pb:"Common problems and fixes",rec:"Official defect reports (NHTSA recalls)",fix:"Fix: ",norec:"No recalls found for this model and year.",pl:"Check current prices on",nop:"Not enough long-term problem data for this model yet.",noapi:"Recall data is available for US-market models only.",nodata:"Specs and prices for this model are not in our database yet.",src:"Source: Wikipedia",all:"All years",gal:"Photos (Wikimedia Commons)",g:"Search common problems on Google",foot:"Brand and model lists and recalls: NHTSA. Photos and summaries: Wikipedia and Wikimedia Commons (open each photo for its author and license). Prices are rough estimates, not offers. General guidance only: have a qualified mechanic inspect your car.",none:"No results.",ty:{car:"Cars",truck:"Trucks",motorcycle:"Motorcycles",bus:"Buses"}},
-ar:{h1:"السيارات والدراجات النارية والشاحنات والحافلات والموديلات والصور الحقيقية",sub:"تصفح أنواع المركبات والماركات والموديلات، وشاهد صورا حقيقية ومواصفات وأعطالا معروفة.",ph:"ابحث عن ماركة…",phm:"ابحث عن موديل…",brands:"الماركات",models:"الموديلات",back:"→ رجوع",load:"جار التحميل…",fail:"قاعدة البيانات المباشرة غير متاحة. تظهر الموديلات المضمنة فقط.",cur:"دليل كامل",eng:"المحرك",hp:"القوة (حصان)",fuel:"الوقود",pn:"سعر الجديد (درهم)",pu:"سعر المستعمل (درهم)",pb:"الأعطال الشائعة وحلولها",rec:"تقارير العيوب الرسمية (استدعاءات NHTSA)",fix:"الحل: ",norec:"لا توجد استدعاءات لهذا الموديل وهذه السنة.",pl:"راجع الأثمنة الحالية في",nop:"لا توجد بعد بيانات كافية عن أعطال هذا الموديل على المدى الطويل.",noapi:"بيانات الاستدعاءات متوفرة فقط للموديلات المباعة في السوق الأمريكي.",nodata:"المواصفات والأثمنة لهذا الموديل غير متوفرة بعد.",src:"المصدر: ويكيبيديا",all:"كل السنوات",gal:"صور (ويكيميديا كومنز)",g:"ابحث عن الأعطال الشائعة في Google",foot:"قوائم الماركات والموديلات والاستدعاءات: NHTSA. الصور والملخصات: ويكيبيديا وويكيميديا كومنز (افتح كل صورة لمعرفة صاحبها ورخصتها). الأثمنة تقريبية وليست عروضا. معلومات عامة فقط: اعرض سيارتك على ميكانيكي مختص.",none:"لا توجد نتائج.",ty:{car:"سيارات",truck:"شاحنات",motorcycle:"دراجات نارية",bus:"حافلات"}}};
+
+var EXTRA={"BMW":["1 Series","2 Series Active Tourer","2 Series Gran Coupé","iX1","iX2","iX3"],"Renault":["Clio","Captur","Megane","Symbol","Kangoo","Austral","Arkana"],"Dacia":["Logan","Sandero","Duster","Jogger","Spring","Bigster"],"Peugeot":["208","301","308","2008","3008","5008","Partner"],"Citroën":["C3","C4","C3 Aircross","C5 Aircross","Berlingo"],"Skoda":["Fabia","Octavia","Kodiaq","Karoq"],"SEAT":["Ibiza","Leon","Ateca"],"Opel":["Corsa","Astra","Mokka"]};
+var TX={en:{h1:"Every car, model, photo and known problem",sub:"Choose a vehicle type, year and brand, then a model for real photos, official defect reports and fixes.",ph:"Search brands…",phm:"Search models…",brands:"Brands",models:"Models",back:"← Back",load:"Loading…",fail:"Live database unreachable. Showing built-in models only.",cur:"Full guide",eng:"Engine",hp:"Power (hp)",fuel:"Fuel",pn:"New price (MAD)",pu:"Used price (MAD)",pb:"Common problems and fixes",rec:"Official defect reports (NHTSA recalls)",fix:"Fix: ",norec:"No recalls found for this model and year.",pl:"Check current prices on",nop:"Not enough long-term problem data for this model yet.",noapi:"Recall data is available for US-market models only.",nodata:"Specs and prices for this model are not in our database yet.",src:"Source: Wikipedia",all:"All years",gal:"Photos (Wikimedia Commons)",g:"Search common problems on Google",foot:"Brand and model lists and recalls: NHTSA. Photos and summaries: Wikipedia and Wikimedia Commons (open each photo for its author and license). Prices are rough estimates, not offers. General guidance only: have a qualified mechanic inspect your car.",none:"No results.",ty:{car:"Cars",truck:"Trucks",motorcycle:"Motorcycles",bus:"Buses"}},
+ar:{h1:"كل السيارات والموديلات والصور والأعطال المعروفة",sub:"اختر نوع المركبة والسنة والماركة ثم الموديل لتشاهد صورا حقيقية وتقارير العيوب الرسمية وحلولها.",ph:"ابحث عن ماركة…",phm:"ابحث عن موديل…",brands:"الماركات",models:"الموديلات",back:"→ رجوع",load:"جار التحميل…",fail:"قاعدة البيانات المباشرة غير متاحة. تظهر الموديلات المضمنة فقط.",cur:"دليل كامل",eng:"المحرك",hp:"القوة (حصان)",fuel:"الوقود",pn:"سعر الجديد (درهم)",pu:"سعر المستعمل (درهم)",pb:"الأعطال الشائعة وحلولها",rec:"تقارير العيوب الرسمية (استدعاءات NHTSA)",fix:"الحل: ",norec:"لا توجد استدعاءات لهذا الموديل وهذه السنة.",pl:"راجع الأثمنة الحالية في",nop:"لا توجد بعد بيانات كافية عن أعطال هذا الموديل على المدى الطويل.",noapi:"بيانات الاستدعاءات متوفرة فقط للموديلات المباعة في السوق الأمريكي.",nodata:"المواصفات والأثمنة لهذا الموديل غير متوفرة بعد.",src:"المصدر: ويكيبيديا",all:"كل السنوات",gal:"صور (ويكيميديا كومنز)",g:"ابحث عن الأعطال الشائعة في Google",foot:"قوائم الماركات والموديلات والاستدعاءات: NHTSA. الصور والملخصات: ويكيبيديا وويكيميديا كومنز (افتح كل صورة لمعرفة صاحبها ورخصتها). الأثمنة تقريبية وليست عروضا. معلومات عامة فقط: اعرض سيارتك على ميكانيكي مختص.",none:"لا توجد نتائج.",ty:{car:"سيارات",truck:"شاحنات",motorcycle:"دراجات نارية",bus:"حافلات"}}};
 var CY=new Date().getFullYear(),L="en",API="https://vpic.nhtsa.dot.gov/api/vehicles/",B=[],failed=false;
 var S={t:"car",y:CY,v:"home",b:null,items:[],x:null};
 try{if(localStorage.getItem("lang")==="ar")L="ar"}catch(e){}
@@ -202,12 +259,11 @@ function ui(){var t=TX[L],h=document.documentElement;h.lang=L;h.dir=L==="ar"?"rt
  $("h1").textContent=t.h1;$("sub").textContent=t.sub;$("foot").textContent=t.foot;$("q").placeholder=S.v==="brand"?t.phm:t.ph;
  var d=S.v==="detail";$("q").style.display=d?"none":"";document.querySelector(".bar").style.display=d?"none":"";
  $("bEn").classList.toggle("on",L==="en");$("bAr").classList.toggle("on",L==="ar")}
-function curFor(k){return S.t!=="car"?[]:CARS.filter(function(c){return c.b.split("/").some(function(x){return bm(N(x),k)})})}
+function curFor(k){return CARS.filter(function(c){return(c.t||"car")===S.t&&c.b.split("/").some(function(x){return bm(N(x),k)})})}
 async function loadBrands(){S.v="home";$("view").textContent=TX[L].load;B=[];failed=false;
  try{var d=await jget(API+"GetMakesForVehicleType/"+S.t+"?format=json");B=d.Results.map(function(r){return{n:nice(r.MakeName),k:N(r.MakeName),id:r.MakeId}})}catch(e){failed=true}
- if(S.t==="car")CARS.forEach(function(c){c.b.split("/").forEach(function(x){x=x.trim();var k=N(x);if(!B.some(function(b){return bm(b.k,k)}))B.push({n:x,k:k,id:null})})});
+ CARS.forEach(function(c){if((c.t||"car")!==S.t)return;c.b.split("/").forEach(function(x){x=x.trim();var k=N(x);if(!B.some(function(b){return bm(b.k,k)}))B.push({n:x,k:k,id:null})})});
  if(S.t==="car")Object.keys(EXTRA).forEach(function(n){var k=N(n);if(!B.some(function(b){return bm(b.k,k)}))B.push({n:n,k:k,id:null})});
- if(S.t==="motorcycle")Object.keys(MOTO).forEach(function(n){var k=N(n);if(!B.some(function(b){return bm(b.k,k)}))B.push({n:n,k:k,id:null})});
  B.sort(function(a,b){return a.n.localeCompare(b.n)});draw()}
 async function lazy(img){var t=img.dataset.t,u=IC[t];
  if(u===undefined){u=null;try{var w=await jget("https://en.wikipedia.org/api/rest_v1/page/summary/"+enc(t.replace(/ /g,"_")));if(w.type!=="disambiguation"&&w.thumbnail&&!LG.test(w.thumbnail.source))u=w.thumbnail.source}catch(e){}IC[t]=u}
@@ -232,7 +288,6 @@ async function openBrand(b){S.v="brand";S.b=b;S.items=[];$("q").value="";$("view
  S.items=names.map(function(n){var c=N(n).length>=3?cur.filter(function(c){return N(c.m).indexOf(N(n))>=0})[0]:null;if(c)used.push(c);return{n:n,c:c,us:true}});
  cur.forEach(function(c){if(used.indexOf(c)<0)S.items.push({n:c.m,c:c,us:false})});
  if(S.t==="car")Object.keys(EXTRA).forEach(function(n){if(!bm(N(n),b.k))return;EXTRA[n].forEach(function(m){var k=N(m);if(!S.items.some(function(x){return N(x.n)===k||(x.c&&N(x.c.m).indexOf(k)===0)}))S.items.push({n:m,c:null,us:false})})});
- if(S.t==="motorcycle"){var mkName=Object.keys(MOTO).find(function(n){return bm(N(n),b.k)||bm(b.k,N(n))});if(mkName)MOTO[mkName].forEach(function(m){if(!S.items.some(function(x){return N(x.n)===N(m)}))S.items.push({n:m,c:null,us:false})})}
  S.items.sort(function(a,b){return a.n.localeCompare(b.n,undefined,{numeric:true})});draw()}
 async function wiki(title){var lg=L==="ar"?["ar","en"]:["en"];
  for(var j=0;j<lg.length;j++){try{var w=await jget("https://"+lg[j]+".wikipedia.org/api/rest_v1/page/summary/"+enc(title.replace(/ /g,"_")));if(w.type!=="disambiguation")return w}catch(e){}}
@@ -247,7 +302,7 @@ async function recalls(x){var el=$("rec");if(!el)return;var t=TX[L],y=$("ry").va
  catch(e){el.innerHTML='<p class="mut">'+t.fail+'</p>'}}
 async function openModel(x){S.v="detail";S.x=x;var t=TX[L],b=S.b,c=x.c;ui();var nm=esc(b.n+" "+(c&&!x.us?c.m:x.n)),title=c?c.w:b.n+" "+x.n;
  $("view").innerHTML='<button class="back" id="bk">'+t.back+'</button><h2>'+nm+'</h2><div class="mut">'+t.load+'</div>';$("bk").onclick=function(){S.v="brand";draw()};
- var photoTitle=S.t==="motorcycle"?title+" motorcycle":title;var r=await Promise.all([wiki(title),commons(photoTitle)]),w=r[0],g=r[1],img=w&&w.thumbnail&&!LG.test(w.thumbnail.source)?w.thumbnail.source:(g[0]?g[0].thumburl:null);
+ var r=await Promise.all([wiki(title),commons(title)]),w=r[0],g=r[1],img=w&&w.thumbnail&&!LG.test(w.thumbnail.source)?w.thumbnail.source:(g[0]?g[0].thumburl:null);
  var h='<button class="back" id="bk">'+t.back+'</button><h2>'+nm+'</h2><div class="detail"><div>'+(img?'<img alt="'+nm+'" src="'+esc(img)+'">':'<div class="ph">🚗</div>')+
  (g.length?'<div class="gal" title="'+t.gal+'">'+g.map(function(i){return'<a href="'+esc(i.descriptionurl)+'" target="_blank" rel="noopener"><img loading="lazy" alt="" src="'+esc(i.thumburl)+'"></a>'}).join("")+'</div>':"")+'</div><div>';
  if(w&&w.extract)h+='<div class="box"><p style="margin:0">'+esc(w.extract)+'</p>'+(w.content_urls?'<p class="mut" style="margin:6px 0 0"><a href="'+esc(w.content_urls.desktop.page)+'" target="_blank" rel="noopener">'+t.src+'</a></p>':"")+'</div>';
